@@ -27,12 +27,23 @@ RUN sudo apt install -y git vim tmux
 RUN rosdep update
 
 # Source the ROS setup files
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
-    && echo "source /colcon_ws/install.setup.bash" >> ~/.bashrc
+RUN echo "" >> ~/.bashrc \
+    && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
+    && echo "source /colcon_ws/install.setup.bash" >> ~/.bashrc \
+    && echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc \ 
+    && echo ". /usr/share/gazebo/setup.sh" >> ~/.bashrc
+
+# helpful tools
+RUN sudo apt update && sudo apt install -y \
+    ros-humble-tf2-tools \
+    ros-humble-rqt-*
+
+# gazebo
+RUN sudo apt update && sudo apt install -y \
+    ros-humble-gazebo-*
 
 # turtlbot dependencies
 RUN sudo apt update && sudo apt install -y \
-    ros-humble-gazebo-* \
     ros-humble-cartographer \
     ros-humble-cartographer-ros \
     ros-humble-navigation2 \
@@ -42,4 +53,7 @@ RUN sudo apt update && sudo apt install -y \
 RUN sudo apt update && sudo apt install -y \
     ros-humble-dynamixel-sdk \
     ros-humble-turtlebot3-msgs \
+    ros-humble-turtlebot3-simulations \
     ros-humble-turtlebot3
+
+CMD source ~/.bashrc
