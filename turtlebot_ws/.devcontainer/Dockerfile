@@ -20,7 +20,7 @@ RUN sudo usermod --append --groups video $USERNAME
 # Update all packages
 RUN sudo apt update && sudo apt upgrade -y
 
-# Install Git
+# Install Git and other basic tools
 RUN sudo apt install -y git vim tmux
 
 # Rosdep update
@@ -28,8 +28,9 @@ RUN rosdep update
 
 # Source the ROS setup files
 RUN echo "" >> ~/.bashrc \
-    && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
-    && echo "source /colcon_ws/install.setup.bash" >> ~/.bashrc \
+    && echo "# ros2 stuff" >> ~/.bashrc \
+    && echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc \
+    && echo "source /turtlebot_ws/install/setup.bash" >> ~/.bashrc \
     && echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc \ 
     && echo ". /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
@@ -42,18 +43,18 @@ RUN sudo apt update && sudo apt install -y \
 RUN sudo apt update && sudo apt install -y \
     ros-humble-gazebo-*
 
-# turtlbot dependencies
-RUN sudo apt update && sudo apt install -y \
-    ros-humble-cartographer \
-    ros-humble-cartographer-ros \
-    ros-humble-navigation2 \
-    ros-humble-nav2-bringup
+# # turtlbot dependencies
+# RUN sudo apt update && sudo apt install -y \
+#     ros-humble-cartographer \
+#     ros-humble-cartographer-ros \
+#     ros-humble-navigation2 \
+#     ros-humble-nav2-bringup
 
-# turtlebot packages
-RUN sudo apt update && sudo apt install -y \
-    ros-humble-dynamixel-sdk \
-    ros-humble-turtlebot3-msgs \
-    ros-humble-turtlebot3-simulations \
-    ros-humble-turtlebot3
+# # turtlebot packages
+# RUN sudo apt update && sudo apt install -y \
+#     ros-humble-dynamixel-sdk \
+#     ros-humble-turtlebot3-msgs \
+#     ros-humble-turtlebot3-simulations \
+#     ros-humble-turtlebot3
 
 CMD source ~/.bashrc

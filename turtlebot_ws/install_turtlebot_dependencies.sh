@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# install python packages
-pip install matplotlib
-
 # update before installing anything
 sudo apt update
+
+# install python packages
+sudo apt install -y python3-pip
+pip install matplotlib
 
 # install helpful tools
 sudo apt install -y \
     ros-humble-tf2-tools \
-    ros-humble-rqt-*
+    ros-humble-rqt-* \
+    net-tools
 
 # install gazebo
 sudo apt install -y \
@@ -23,6 +25,8 @@ sudo apt install -y \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
     ros-humble-dynamixel-sdk \
+
+source /opt/ros/humble/setup.bash
 
 # create src directory
 mkdir src

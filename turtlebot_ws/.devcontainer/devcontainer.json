@@ -1,5 +1,5 @@
 {
-  "name": "TECHIN516",
+  "name": "TECHIN516turtle",
   "dockerFile": "Dockerfile",
   "runArgs": [
     "--privileged",
@@ -7,8 +7,8 @@
     "--gpus", "all",
     "-e", "DISPLAY=${localEnv:DISPLAY}"
   ],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/colcon_ws,type=bind",
-  "workspaceFolder": "/colcon_ws",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/turtlebot_ws,type=bind",
+  "workspaceFolder": "/turtlebot_ws",
   "mounts": [
     "source=/etc/timezone,target=/etc/timezone,type=bind",
     "source=/etc/localtime,target=/etc/localtime,type=bind",
