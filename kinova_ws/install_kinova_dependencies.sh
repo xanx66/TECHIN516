@@ -4,6 +4,8 @@
 sudo apt update
 
 source /opt/ros/humble/setup.bash
+sudo rosdep init
+rosdep update
 
 # install python packages
 sudo apt install -y python3-pip

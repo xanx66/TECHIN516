@@ -16,7 +16,7 @@ sudo apt install -y \
 # install gazebo
 sudo apt install -y \
     ros-humble-gazebo-*
-echo ". /usr/share/gazebo/setup.sh" >> ~/.bashrc
+echo "source /usr/share/gazebo/setup.bash" >> ~/.bashrc
 
 # install turtlebot dependencies
 sudo apt install -y \
