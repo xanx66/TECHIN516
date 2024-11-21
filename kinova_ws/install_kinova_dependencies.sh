@@ -55,14 +55,13 @@ sudo apt-get update
 rosdep install --ignore-src --from-paths src -y -r
 
 # install pymoveit2
- cd src
- git clone https://github.com/AndrejOrsula/pymoveit2.git
- rosdep install -y -r -i --rosdistro ${ROS_DISTRO} --from-paths ./pymoveit2
- cd ..
+cd src
+git clone https://github.com/AndrejOrsula/pymoveit2.git
+rosdep install -y -r -i --rosdistro ${ROS_DISTRO} --from-paths ./pymoveit2
+cd ..
 
 # build
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --parallel-workers 3
-# colcon build --symlink-install --parallel-workers 3
 rm ros_controls.humble.repos
 source install/setup.bash
