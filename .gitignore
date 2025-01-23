@@ -7,9 +7,9 @@ kinova_ws/install/
 kinova_ws/log/
 kinova_ws/build/
 /src/
-/install/
-/log/
-/build/
+**/install/
+**/log/
+**/build/
 TECHIN516Lab0/
 /lab0/lab0_linux/
 .vscode/
