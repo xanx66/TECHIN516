@@ -30,7 +30,7 @@ setup(
             'go_to_position = lab_quaternion.go_to_position:main',
             'control_gripper = lab_quaternion.control_gripper:main',
             'control_phy_gripper = lab_quaternion.control_phy_gripper:main',
-            'final_move = lab_quaternion.final_move:main'
+            'final_mover = lab_quaternion.final_move:main'
 
         ],
     },

@@ -9,30 +9,31 @@ class GripperController(Node):
         super().__init__('gripper_controller')
         self.gripper = Gen3LiteGripper()
 
-        self.declare_parameter("command", "open")
-        self.declare_parameter("position", 0.5)
+        # Declare ROS2 parameters for gripper control
+        self.declare_parameter("command", "open")  # Default: Open
+        self.declare_parameter("position", 0.5)  # Default: Midway (between open and close)
 
     def control_gripper(self):
-        """Executes gripper actions based on provided parameters."""
+        """Controls the gripper based on input parameters."""
         command = self.get_parameter("command").value
         position = self.get_parameter("position").value
 
         if command == "open":
-            self.get_logger().info("Opening gripper.")
+            self.get_logger().info("🛠 Opening gripper...")
             self.gripper.open()
         elif command == "close":
-            self.get_logger().info("Closing gripper.")
+            self.get_logger().info("🤖 Closing gripper...")
             self.gripper.close()
         elif command == "move":
             if 0.0 <= position <= 0.85:
-                self.get_logger().info(f"Moving gripper to position: {position}")
+                self.get_logger().info(f"🔄 Moving gripper to position: {position}")
                 self.gripper.move_to_position(position)
             else:
-                self.get_logger().error(f"Invalid position value: {position}. Must be between 0.0 and 0.85.")
+                self.get_logger().error(f"❌ Invalid position: {position}. Must be between 0.0 and 0.85.")
         else:
-            self.get_logger().error(f"Unrecognized command: {command}. Available commands are 'open', 'close', or 'move'.")
+            self.get_logger().error(f"❌ Unknown command: {command}. Use 'open', 'close', or 'move'.")
 
-        self.get_logger().info("Gripper action completed.")
+        self.get_logger().info("✅ Gripper operation completed.")
 
 
 def main(args=None):
